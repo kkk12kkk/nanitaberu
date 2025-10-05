@@ -1,0 +1,47 @@
+<% if notice %>
+  <p class="alert alert-success bg-white"><%= notice %></p>
+<% end %>
+
+<% if user_signed_in? %>
+  <div class="container-fluid mt-5">
+    <div class="header row">
+      <div class="mx-auto">
+        <div class="col">
+          <h1>Welcome to <i class="bi bi-apple"></i> Nanitaberus!!</h1>
+          <p>In <i class="bi bi-apple"></i> Nanitaberus,</p>
+          <p>美味しい料理を共有出来る仲間を増やそう！</p>
+        </div>
+        <div class="btn-box col-10 mx-auto mt-5">
+          <div class="row">
+            <a class="btn btn-info btn-sm btn-block mb-3 sign-in" href="/users/sign_in">Log in</a>
+          </div>
+          <div class="row">
+            <a class="btn btn-success btn-sm btn-block sign-up" href="/users/sign_up">Sign up</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% else %>
+  <div class="container-fluid mt-5">
+    <div class="header row">
+      <div class="mx-auto">
+        <div class="col">
+          <h2>Welcome to <i class="bi bi-apple"></i> Nanitaberus!!</h2>
+          <p>In <i class="bi bi-apple"></i> Nanitaberus,</p>
+          <p>美味しい料理を共有出来る仲間を増やそう！</p>
+        </div>
+        <div class="btn-box col-10 mx-auto mt-5">
+          <div class="row">
+            <a class="btn btn-info btn-sm btn-block mb-3 sign-in" href="/users/sign_in">Log in</a>
+          </div>
+          <div class="row">
+            <a class="btn btn-success btn-sm btn-block sign-up" href="/users/sign_up">Sign up</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<%= render 'taberus/footer' %>

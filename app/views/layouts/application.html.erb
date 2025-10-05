@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     <title>Nanitaberu</title>
+     <meta name="viewport" content="width=device-width,initial-scale=1">
+     <%= csrf_meta_tags %>
+     <%= csp_meta_tag %>
+     <meta name="viewport" content="width=device-width,initial-scale=1 maximum-scale=1">
+     <script src="https://kit.fontawesome.com/4c018c7cce.js" crossorigin="anonymous"></script>
+     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+    
+  <body>  
+  <header>
+   <div class="container-fluid bg-secondary">
+     <div class="row px-5 py-4"
+       <div class="col-3 d-flex justify-content-strat">
+        <%= link_to "Nanitaberu", root_path, style: 'color: white;' %>
+       </div>
+
+       <div class="col-6 offset-3 d-flex justify-content-end">
+         <div class="d-flex">
+            <% if user_signed_in? %>
+
+            <%= link_to user_path(current_user.id), class: 'text-white mr-3' do %>
+              <i class="fa-solid fa-house"></i>Home
+            <% end %>
+            
+            <%= link_to users_path, class: 'text-white mr-3' do %>
+              <i class="fa-solid fa-users"></i>Users
+            <% end %>
+            <%= link_to taberus_path, class: 'text-white mr-3' do %>
+              <i class="fa-solid fa-taberu-open"></i>Taberus
+            <% end %>
+            <%= link_to destroy_user_session_path, method: :delete, class: 'text-white mr-3' do %>
+              <i class="fa-solid fa-right-from-bracket"></i>Log out
+            <% end %>
+          <% else %>
+            <%= link_to root_path, class: 'text-white mr-3' do %>
+              <i class="fa-solid fa-house"></i>Home
+            <% end %>
+            <%= link_to about_path, class: 'text-white mr-3' do %>
+              <i class="fa-solid fa-link"></i>About
+            <% end %>
+            <%= link_to new_user_registration_path, class: 'text-white mr-3' do %>
+              <i class="fa-solid fa-user-plus"></i>Sign up
+            <% end %>
+              <%= link_to new_user_session_path, class: 'text-white' do %>
+              <i class="fa-solid fa-right-to-bracket"></i>Log in
+            <% end %>
+         <% end %>
+       </div>
+     </div>
+   </div>
+   </div>
+   </header>
+   <main>
+     <%= yield %>
+   </main>
+      <footer style="text-align: center; margin-top: 50px;">
+    <p>CopyRight Taberuno_suki.inc</p>
+  </footer>
+  </body>
+</html>

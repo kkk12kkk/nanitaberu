@@ -1,0 +1,38 @@
+<% if @newtaberu.errors.any? %>
+   <div class="alert alert-danger">
+     <%= render "error", model: @newtaberu %>
+   </div>
+ <% end %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-3">
+       <%= render 'taberus/taberu', taberus: @taberus, user: @user %>
+    </div>
+
+    <div class="col-md-8 offset-md-1">
+       <h1>Taberus</h1>
+          <table class="table">
+            <thead>
+              <th></th>
+              <th>Title</th>
+              <th>Opinion</th>
+            </thead>
+            <tbody>
+            <% @taberus.each do |taberu| %>
+              <tr>
+                <td>
+                  <%= link_to user_path(taberu.user) do %>
+                    <%= image_tag taberu.user.get_profile_image(100, 100) %>
+                  <% end %>
+                </td>
+                <td><%= link_to taberu.title, taberu_path(taberu) %></td>
+                <td><%= taberu.body %></td>
+              </tr>
+            <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <%= render 'taberus/footer' %>

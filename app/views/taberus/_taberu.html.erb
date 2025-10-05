@@ -1,0 +1,41 @@
+<h1>User info</h1>
+    <% if @user.present? %>
+      <%= image_tag @user.get_profile_image(100, 100) %>
+      <hr>
+        <p>name: <%= @user.name %></p>
+      <% if @user.introduction.present? %>
+      <hr>
+        <p>introduction: <%= @user.introduction %></p>
+      <% else %>
+        <p>introduction: 自己紹介文はありません</p>
+      <% end %>
+      <% else %>
+        <p>ユーザー情報が見つかりません</p>
+    <% end %>
+
+    <% if current_user && @user.present? %>
+      <div class="col mt-5">
+        <p><%= link_to edit_user_path(@user), class: "btn btn-outline-dark btn-block" do %>
+           <i class="fa-solid fa-user-gear"></i>
+        <% end %></p>
+      </div>
+    <% end %>
+
+    <% @newtaberu ||= Taberu.new %>
+
+  <h1>New taberu</h1>
+  <%= form_with model: @newtaberu do |f| %>
+    <div class="field">
+         <!-- f.label :title 入力する事でcode内では小文字でもサイト上では大文字になる。 -->
+      <%= f.label :title %><br>
+         <!--小さい文字入力出来るフィールドが出来る。-->
+      <%= f.text_field :title %>
+    </div>
+    <div class="field">
+      <%= f.label :opinion %><br>
+      <%= f.text_area :body %>
+    </div>
+    <div class="row ml-0">
+      <%= f.submit 'Create Taberu', class: "btn btn-success" %>
+    </div>
+  <% end %>    
