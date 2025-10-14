@@ -1,8 +1,4 @@
-<% if notice %>
-    <div class="alert alert-success bg-white">
-        <%= notice %>
-    </div>
-<% end %>
+
 
 <div class="container" >
   <div class="row">
@@ -23,8 +19,8 @@
              <td><%= link_to @taberu.title, taberu_path(@taberu) %></td>
              <td><%= @taberu.body %></td>
              <% if @taberu.user_id ==current_user.id %>
-               <td><%#= link_to "Edit", edit_taberu_path(@taberu), class:"btn btn-success"%></td>
-               <td><%#= link_to "Destroy", taberu_path(@taberu), method: :delete, data: {confirm: "本当に消しますか？"}, class:"btn btn-danger"%></td>
+               <td><%= link_to "Edit", edit_taberu_path(@taberu), class:"btn btn-success"%></td>
+               <td><%= link_to "Destroy", taberu_path(@taberu), method: :delete, data: {confirm: "本当に消しますか？"}, class:"btn btn-danger"%></td>
             <% end %>
            </tr>
           </tbody>

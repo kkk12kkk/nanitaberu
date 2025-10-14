@@ -1,0 +1,15 @@
+<%= content_for(:error_messages) do %>
+  <% if model.errors.any? %>
+    <p id="notice"></p>
+    <div class="container px-5 px-sm0">
+      <div id="error_explanation">
+        <h2><%= pluralize(model.errors.count,"error") %> prohibited this taberu from being saved:</h2>
+        <ul>
+        <% model.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+<% end %>

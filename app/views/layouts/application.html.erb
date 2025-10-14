@@ -31,7 +31,7 @@
               <i class="fa-solid fa-users"></i>Users
             <% end %>
             <%= link_to taberus_path, class: 'text-white mr-3' do %>
-              <i class="fa-solid fa-taberu-open"></i>Taberus
+              <i class="fa-brands fa-apple"></i>Taberus
             <% end %>
             <%= link_to destroy_user_session_path, method: :delete, class: 'text-white mr-3' do %>
               <i class="fa-solid fa-right-from-bracket"></i>Log out
@@ -55,11 +55,22 @@
    </div>
    </div>
    </header>
-   <main>
-     <%= yield %>
-   </main>
-      <footer style="text-align: center; margin-top: 50px;">
-    <p>CopyRight Taberuno_suki.inc</p>
-  </footer>
+    <main>
+      <% if notice.present? %>
+        <div class="alert alert-success bg-white">
+          <%= notice %>
+        </div>
+      <% end %>
+      <% if alert.present? %>
+        <div class="alert alert-danger bg-white">
+          <%= alert %>
+        </div>
+      <% end %>
+      <%= yield(:error_messages) %>
+      <%= yield %>
+    </main>
+    <footer style="text-align: center; margin-top: 50px;">
+      <p>CopyRight Taberuno_suki.inc</p>
+    </footer>
   </body>
 </html>

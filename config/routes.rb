@@ -5,6 +5,6 @@ Rails.application.routes.draw do
   root to: "homes#top"
   get'home/about', to: 'homes#about', as: 'about'
 
-  resources :taberus, only: [:new, :create, :index, :show, :destroy]
-  resources :users, only: [:show, :edit, :update, :index]
+  resources :taberus
+  resources :users, only: [:show, :edit, :update, :index, :destroy]
 end

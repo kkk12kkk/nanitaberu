@@ -1,9 +1,7 @@
 <h1>Editing Taberu</h1>
 
 <%= form_with model: @taberu, local: true do |f| %>
-  <% if @taberu.errors.any? %>
-    <%= render "error", model: @taberu %>
-  <% end %>
+  <%= render "layouts/error", model: f.object %>
 
   <div class="field">
     <%= f.label :title %><br>
@@ -12,13 +10,13 @@
 
   <div class="field">
     <%= f.label :opinion %><br>
-    <%= f.text_area :body, rows: 6 %>
+    <%= f.text_area :body %>
   </div>
 
   <div class="actions">
     <%= f.submit 'Update Taberu',  class: "btn btn-success"   %>
   </div>
    <%= link_to "Show", taberu_path(@taberu.id) %>
-    |
-   <%= link_to "Back", taberus_path %>
+   |
+   <%= link_to "Back", taberus_path(@taberu.id) %>
 <% end %>

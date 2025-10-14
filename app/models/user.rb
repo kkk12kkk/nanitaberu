@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
    has_one_attached :profile_image      
-   has_many :taberus, dependent: :destroy
+   has_many :taberus, :dependent => :destroy  #投稿したデータも削除する
 
   validates :name, presence: true
   validates :name, length: { minimum: 2, maximum: 20}

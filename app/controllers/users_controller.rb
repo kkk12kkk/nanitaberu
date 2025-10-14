@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
+  before_action :correct_user, only: [:edit, :update, :destroy, :show]
+
   def new
     @user = @User.new
   end
@@ -37,22 +40,16 @@ class UsersController < ApplicationController
   end
   
   def edit
-    @user = User.find(params[:id])
-    if @user == current_user
-         render "edit"
-    else
-      redirect_to user_path(current_user)
-    end  
   end
 
   def destroy
-    user = User.find(params[:id])  # データ（レコード）を1件取得
-    user.destroy  # データ（レコード）を削除
+    @user = User.find(params[:id]) #追加
+    @user.destroy  # データ（レコード）を削除
+    flash[:notice] = "ユーザーを削除しました。" #追加
     redirect_to '/users'  # 投稿一覧画面へリダイレクト
   end
 
   def update
-      @user = User.find(params[:id])
     if  @user.update(user_params)
       flash[:notice] = "You have update user successfully"
       redirect_to user_path(current_user)
@@ -65,5 +62,12 @@ class UsersController < ApplicationController
 
   def user_params
     params.require(:user).permit(:name, :email, :profile_image, :introduction)
+  end
+
+  def correct_user
+    @user = User.find(params[:id])
+    if @user != current_user
+      redirect_to root_url
+    end
   end
 end

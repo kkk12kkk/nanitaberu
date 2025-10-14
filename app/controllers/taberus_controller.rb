@@ -17,16 +17,17 @@ class TaberusController < ApplicationController
 
   def create
     # １.&2. データを受け取り新規登録するためのインスタンス作成
-    @newtaberu = Taberu.new(taberu_params)
-    @newtaberu.user_id = current_user.id
+    @taberu = Taberu.new(taberu_params)
+    @taberu.user_id = current_user.id
     # 3. データをデータベースに保存するためのsaveメソッド実行
-    if @newtaberu.save
+    if @taberu.save
       # 3. フラッシュメッセージを定義し、詳細画面へリダイレクト
       flash[:notice] = "You have creatad taberu successfully"
-      redirect_to taberu_path(@newtaberu.id)
+      redirect_to taberu_path(@taberu.id)
     else
       @user = current_user
       @taberus = Taberu.all
+      #byebug
       render 'index'
     end
   end
@@ -37,7 +38,7 @@ class TaberusController < ApplicationController
       @user = current_user
     end
       @taberus = Taberu.all
-      @newtaberu = Taberu.new
+      @taberu = Taberu.new
   end
 
   def show

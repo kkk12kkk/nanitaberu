@@ -1,9 +1,3 @@
-<% if flash[:notice].present? %>
-  <div class="alert alert-success bg-white">
-    <%= flash[:notice] %>
-  </div>
-<% end %>
-
 <div class="container">
   <div class="row">
     <!-- ユーザー情報や投稿フォームなど -->
@@ -14,7 +8,6 @@
     <!-- 投稿一覧 -->
     <div class="col-md-8 offset-md-1">
       <h1>Taberus</h1>
-
       <table class="table">
         <thead>
           <tr>
@@ -37,24 +30,6 @@
           <% end %>
         </tbody>
       </table>
-
-      <div class="mt-4">
-        <h3><%= @user.name %></h3>
-        <% if @user.profile_image.attached? %>
-          <%= image_tag @user.profile_image, size: "100x100" %>
-        <% end %>
-      <hr>
-
-      <h2></h2>
-      <% @taberus.each do |taberu| %>
-        <div class="taberu mb-4 p-3 border rounded">
-          <p><strong>タイトル:</strong> <%= taberu.title %></p>
-          <p><strong>本文:</strong> <%= taberu.body %></p>
-          <p><strong>投稿者:</strong> <%= taberu.user.name %></p>
-          <p><strong>投稿日:</strong> <%= l(taberu.created_at, format: :short) %></p>
-          <%= link_to "詳細", taberu_path(taberu), class: "btn btn-outline-info btn-sm" %>
-        </div>
-      <% end %>
     </div>
   </div>
 </div>
